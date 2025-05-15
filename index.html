@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Convite para Raielly 💖</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <audio id="romanticMusic" src="romantica.mp3"></audio>
+    <canvas id="hearts-canvas"></canvas>
+
+    <div id="start-screen">
+        <h1>🌹 Oi Raielly 🌹</h1>
+        <p id="intro-text">
+            Tenho um quiz matemático para você...<br>
+            <small>(Aumente o volume, o jogo possui música 🎵)</small>
+        </p>
+        <button id="start-button">INICIAR</button>
+    </div>
+
+    <div id="quiz-screen" class="hidden">
+        <h2 id="question-text"></h2>
+        <div id="options-container"></div>
+    </div>
+
+    <footer id="footer-progress">🕒 GABARITO: <span id="date-progress">_ / _ / ____ às _:_</span>
+    </footer>
+
+    <!-- Final Screen Atualizado -->
+    <div id="final-screen" class="hidden">
+        <div id="final-message-step1">
+            <p>Desenvolvi esse jogo com muito carinho, e quero deixar uma mensagem para você.</p>
+            <p>Eu sei que talvez você não tenha sentido aquela química imediata no primeiro encontro, mas eu sinto algo
+                verdadeiro por você. Gosto de você, de quem você é, e não quero te perder.</p>
+            <p>Você é única e especial pra mim. Acredito, de coração, que a gente ainda pode construir algo lindo
+                juntos. Quero que você faça parte dos meus planos e que eu faça parte dos seus. Conversamos tanto sobre
+                isso e queria ter a oportunidade de te mostrar tudo que sinto e o que posso fazer por ti.</p>
+            <p><strong>Por isso, venho te pedir mais uma chance pra conversarmos.</strong></p>
+            <button id="next-button">SEGUINTE ➡️</button>
+        </div>
+
+        <div id="final-message-step2" class="hidden">
+            <p class="final-highlight">
+                💌 Posso te pedir uma coisa especial?<br>
+                Me dá a chance de te conquistar de novo...<br>
+                <strong><span class="heartbeat">Aceita jantar comigo?</span></strong><br>
+                📅 20/05/2025 às 20:00<br>
+                📍 Cocobambu (Shopping Itaú)
+            </p>
+
+
+
+
+            <div class="whatsapp-buttons">
+                <a class="whatsapp-btn yes"
+                    href="https://wa.me/5531971212125?text=Sim,%20eu%20aceito%20jantar%20com%20você!!!" target="_blank">
+                    💚 Aceito
+                </a>
+                <a class="whatsapp-btn no"
+                    href="https://wa.me/5531971212125?text=Não,%20mas%20obrigado%20pelo%20convite." target="_blank">
+                    💔 Não
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>

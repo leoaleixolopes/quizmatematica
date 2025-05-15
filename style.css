@@ -1,0 +1,278 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #ffe6e6, #ffccff);
+    text-align: center;
+    padding: 30px;
+    margin: 0;
+}
+
+h1,
+h2 {
+    color: #cc0066;
+}
+
+button {
+    background-color: #ff4d88;
+    color: white;
+    padding: 12px 24px;
+    margin: 10px;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #e60073;
+}
+
+#options-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer {
+    position: fixed;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    color: #660033;
+}
+
+.hidden {
+    display: none;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+#final-message {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.6em;
+    color: #4b0033;
+    margin-top: 40px;
+    line-height: 1.5;
+    padding: 0 20px;
+}
+
+.final-highlight {
+    font-size: 2em;
+    color: #cc0066;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+.whatsapp-buttons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.whatsapp-btn {
+    font-size: 1.4em;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    font-family: 'Dancing Script', cursive;
+}
+
+.whatsapp-btn.yes {
+    background-color: #25D366;
+}
+
+.whatsapp-btn.yes:hover {
+    background-color: #1da851;
+}
+
+.whatsapp-btn.no {
+    background-color: #ff4d4d;
+}
+
+.whatsapp-btn.no:hover {
+    background-color: #cc0000;
+}
+
+#next-button {
+    margin-top: 30px;
+    padding: 10px 24px;
+    font-size: 1.2em;
+    font-family: 'Dancing Script', cursive;
+    background-color: #ffd1dc;
+    color: #4b0033;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#next-button:hover {
+    background-color: #ffb3c6;
+}
+
+#final-message-step1,
+#final-message-step2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.6em;
+    color: #4b0033;
+    line-height: 1.5;
+    padding: 0 20px;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.fade-in {
+    display: block;
+    opacity: 1;
+}
+
+.final-highlight span {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.final-highlight::after {
+    content: "";
+    display: block;
+    margin-top: 8px;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.final-highlight {
+    font-size: 1.2em;
+    font-weight: bold;
+    line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    h1,
+    h2 {
+        font-size: 1.5em;
+    }
+
+    #quiz-screen button,
+    #start-button,
+    #next-button,
+    .whatsapp-btn {
+        font-size: 1em;
+        padding: 10px 16px;
+    }
+
+    .final-highlight {
+        font-size: 1em;
+        padding: 0 10px;
+    }
+
+    .whatsapp-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+#intro-text {
+    font-size: 1.4em;
+    line-height: 1.6;
+    font-family: 'Dancing Script', cursive;
+    margin-bottom: 20px;
+}
+
+#intro-text small {
+    font-size: 0.8em;
+    color: #555;
+}
+
+@keyframes heartbeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    14% {
+        transform: scale(1.1);
+    }
+
+    28% {
+        transform: scale(1);
+    }
+
+    42% {
+        transform: scale(1.1);
+    }
+
+    70% {
+        transform: scale(1);
+    }
+}
+
+.heartbeat {
+    animation: heartbeat 1.5s infinite;
+    display: inline-block;
+    color: #c90052;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.4em;
+    text-align: center;
+    margin-top: 30px;
+    line-height: 1.7;
+}
+
+@keyframes heartbeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    14% {
+        transform: scale(1.1);
+    }
+
+    28% {
+        transform: scale(1);
+    }
+
+    42% {
+        transform: scale(1.1);
+    }
+
+    70% {
+        transform: scale(1);
+    }
+}
+
+.heartbeat {
+    animation: heartbeat 1.5s infinite;
+    display: inline-block;
+    color: #c90052;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.4em;
+}
+
+#hearts-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    /* para que cliques passem para elementos abaixo */
+    z-index: -1;
+}
