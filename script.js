@@ -58,9 +58,18 @@ function showQuestion() {
     q.options.forEach(option => {
         const btn = document.createElement("button");
         btn.innerText = option;
-        btn.onclick = () => checkAnswer(option);
+        btn.onclick = () => {
+            // REGISTRA O CLIQUE COMO EVENTO NO ANALYTICS
+            gtag('event', 'quiz_resposta', {
+                'event_category': 'quiz',
+                'event_label': `Pergunta ${currentQuestion + 1} - Resposta: ${option}`
+            });
+
+            checkAnswer(option);
+        };
         optionsContainer.appendChild(btn);
     });
+
 }
 
 function checkAnswer(selected) {

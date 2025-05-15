@@ -3,6 +3,15 @@
 
 <head>
     <meta charset="UTF-8" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EWNX6TEGDM"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-EWNX6TEGDM');
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Convite para Raielly 💖</title>
     <link rel="stylesheet" href="style.css">
@@ -55,13 +64,14 @@
 
 
             <div class="whatsapp-buttons">
-                <a class="whatsapp-btn yes"
-                    href="https://wa.me/5531971212125?text=Sim,%20eu%20aceito%20jantar%20com%20você!!!" target="_blank">
-                    💚 Aceito
+                <a href="https://wa.me/5531971212125?text=Sim,+eu+aceito+jantar+com+você!!!"
+                    onclick="gtag('event', 'click', { event_category: 'convite', event_label: 'aceitou' });">
+                    Aceito
                 </a>
-                <a class="whatsapp-btn no"
-                    href="https://wa.me/5531971212125?text=Não,%20mas%20obrigado%20pelo%20convite." target="_blank">
-                    💔 Não
+
+                <a href="https://wa.me/5531971212125?text=Não,+mas+obrigado+pelos+convite."
+                    onclick="gtag('event', 'click', { event_category: 'convite', event_label: 'recusou' });">
+                    Não
                 </a>
             </div>
         </div>
