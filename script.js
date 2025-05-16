@@ -43,6 +43,27 @@ const questions = [
     }
 ];
 
+// --- Função de notificação Telegram ---
+function sendTelegramNotification(pergunta, resposta) {
+    const token = "7562775965:AAE0JZNPMhXmtcNYl709Kv34Yqs9V_ZsS_0";
+    const chatId = "1343180054";
+    const message = `💌 Nova resposta correta no quiz!\n📌 *Pergunta:* ${pergunta}\n✅ *Resposta:* ${resposta}`;
+    const url = `https://api.telegram.org/bot${token}/sendMessage`;
+
+    fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            chat_id: chatId,
+            text: message,
+            parse_mode: "Markdown"
+        })
+    });
+}
+
+// --- Início do quiz ---
 startBtn.addEventListener("click", () => {
     music.play();
     startScreen.classList.add("hidden");
@@ -59,7 +80,7 @@ function showQuestion() {
         const btn = document.createElement("button");
         btn.innerText = option;
         btn.onclick = () => {
-            // REGISTRA O CLIQUE COMO EVENTO NO ANALYTICS
+            // Google Analytics
             gtag('event', 'quiz_resposta', {
                 'event_category': 'quiz',
                 'event_label': `Pergunta ${currentQuestion + 1} - Resposta: ${option}`
@@ -69,7 +90,6 @@ function showQuestion() {
         };
         optionsContainer.appendChild(btn);
     });
-
 }
 
 function checkAnswer(selected) {
@@ -78,6 +98,10 @@ function checkAnswer(selected) {
     if (selected === q.answer) {
         progress[q.index] = selected;
         updateFooter();
+
+        // Telegram notificação
+        sendTelegramNotification(q.text, selected);
+
         currentQuestion++;
         if (currentQuestion < questions.length) {
             showQuestion();
@@ -96,27 +120,59 @@ function updateFooter() {
 function showFinal() {
     quizScreen.classList.add("hidden");
     finalScreen.classList.remove("hidden");
-
-    // Remove o rodapé com gabarito
     document.getElementById("footer-progress").style.display = "none";
 
-    // Atualiza a data e hora no final
     const finalDateText = `${progress[0]}/${progress[1]}/${progress[2]} às ${progress[3]}:${progress[4]}`;
     document.getElementById("final-date").innerText = finalDateText;
 }
-// Botão SEGUINTE revela a parte final da mensagem
+
+// DOMContentLoaded: animações e eventos de botões
 document.addEventListener("DOMContentLoaded", () => {
+    // Notificação ao abrir a página
+    sendTelegramNotification("Página carregada", "O quiz foi aberto 🎉");
+
     const nextButton = document.getElementById("next-button");
     const step1 = document.getElementById("final-message-step1");
     const step2 = document.getElementById("final-message-step2");
 
-    nextButton.addEventListener("click", () => {
-        step1.classList.add("hidden");
-        step2.classList.remove("hidden");
-        step2.classList.add("fade-in");
-    });
+    if (nextButton) {
+        nextButton.addEventListener("click", () => {
+            step1.classList.add("hidden");
+            step2.classList.remove("hidden");
+            step2.classList.add("fade-in");
+
+            // Enviar notificação Telegram ao clicar em "Seguinte"
+            sendTelegramNotification("Botão Seguinte clicado", "A próxima parte da mensagem foi revelada ❤️");
+        });
+    }
+
+    // Botões WhatsApp - Aceito/Não
+    const btnAceito = document.getElementById("btn-aceito");
+    const btnNao = document.getElementById("btn-nao");
+
+    function sendEventAndOpenLink(e, label) {
+        e.preventDefault();
+
+        gtag('event', 'click', {
+            event_category: 'convite_jantar',
+            event_label: label,
+        });
+
+        setTimeout(() => {
+            window.open(e.currentTarget.href, '_blank');
+        }, 300);
+    }
+
+    if (btnAceito) {
+        btnAceito.addEventListener('click', (e) => sendEventAndOpenLink(e, 'Aceito'));
+    }
+
+    if (btnNao) {
+        btnNao.addEventListener('click', (e) => sendEventAndOpenLink(e, 'Não'));
+    }
 });
 
+// Animação de corações no fundo
 const canvas = document.getElementById('hearts-canvas');
 const ctx = canvas.getContext('2d');
 
@@ -156,8 +212,6 @@ class Heart {
         ctx.scale(this.size / 20, this.size / 20);
         ctx.fillStyle = `rgba(201, 0, 82, ${this.opacity})`;
         ctx.beginPath();
-
-        // Desenha um coração clássico usando curvas de Bézier
         ctx.moveTo(0, 0);
         ctx.bezierCurveTo(0, -3, -5, -10, -10, -10);
         ctx.bezierCurveTo(-20, -10, -20, 0, -20, 0);
@@ -165,12 +219,10 @@ class Heart {
         ctx.bezierCurveTo(10, 15, 20, 10, 20, 0);
         ctx.bezierCurveTo(20, 0, 20, -10, 10, -10);
         ctx.bezierCurveTo(5, -10, 0, -3, 0, 0);
-
         ctx.closePath();
         ctx.fill();
         ctx.restore();
     }
-
 }
 
 const hearts = [];
@@ -187,5 +239,4 @@ function animate() {
     });
     requestAnimationFrame(animate);
 }
-
 animate();
